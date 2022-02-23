@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "697466fac0ad4d39ef74b0b8715c333564518982d5013e7509e715ddfda858f6"
+            "sha256": "352f48315644fb0629933c95195b362d55d6446639fff014248d1540593a77df"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -103,6 +103,14 @@
             "index": "pypi",
             "version": "==8.0.3"
         },
+        "colorama": {
+            "hashes": [
+                "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b",
+                "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
+            ],
+            "markers": "platform_system == 'Windows'",
+            "version": "==0.4.4"
+        },
         "flask": {
             "hashes": [
                 "sha256:7b2fb8e934ddd50731893bdcdb00fc8c0315916f9fcd50d22c7cc1a95ab634e2",
@@ -124,6 +132,13 @@
             ],
             "index": "pypi",
             "version": "==0.3.2"
+        },
+        "flask-jwt-extended": {
+            "hashes": [
+                "sha256:68035dba637fd58c0f0b308e49103cba7f6977aa301d958ddbd7b811a91c6dec"
+            ],
+            "index": "pypi",
+            "version": "==3.18.0"
         },
         "flask-restful": {
             "hashes": [

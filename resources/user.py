@@ -1,11 +1,14 @@
 from datetime import date
 from flask_restful import Resource, reqparse
-from flask import jsonify
+from flask import jsonify#, request, abort, g, url_for
 from src.db import get_db
+from werkzeug.security import generate_password_hash,check_password_hash
+#from passlib.apps import custom_app_context as pwd_context
+#from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 
 parser = reqparse.RequestParser()
 
-class User(Resource):
+class User(Resource): 
     def get(self, user_name):
         result = get_db().cursor().execute(f'SELECT * FROM users WHERE username="{user_name}"')
         row = result.fetchone()
@@ -15,11 +18,12 @@ class User(Resource):
         parser.add_argument('password')
         data = parser.parse_args()
         un = data['username']
-        pw = data['password']
-        get_db().cursor().execute(f'INSERT INTO users(id, username, password) VALUES({hash(un)}, "{un}", "{pw}")')
+        #pw = data['password']
+        hpw = generate_password_hash(data['password'], method='sha256')
+        get_db().cursor().execute(f'INSERT INTO users(id, username, password) VALUES({hash(un)}, "{un}", "{hpw}")')
         get_db().commit()
         get_db().close()
-        return parser.parse_args()
+        return jsonify({'message': 'successfully signed up'})
 class Users(Resource):
     def get(self):
         result = get_db().cursor().execute('SELECT * FROM users')
