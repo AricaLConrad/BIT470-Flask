@@ -51,6 +51,7 @@ class HelloWorld(Resource):
  
 #        return f(current_user, *args, **kwargs)
 #    return decorator
+#
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(User, '/users/<string:user_name>', '/users/create')

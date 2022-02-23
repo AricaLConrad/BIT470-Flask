@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from resources.user import Users
 
 parser = reqparse.RequestParser()
+#
 
 class Signup(Resource):
     def post(self, credentials):
