@@ -1,3 +1,6 @@
+# Arica: I followed this tutorial for comments and error trapping:
+# https://dev.to/imdhruv99/flask-user-authentication-with-jwt-2788
+
 from datetime import date
 from flask_restful import Resource, reqparse
 from flask import jsonify#, request, abort, g, url_for
@@ -9,11 +12,15 @@ from werkzeug.security import generate_password_hash,check_password_hash
 parser = reqparse.RequestParser()
 
 class User(Resource): 
+
     def get(self, user_name):
+
         result = get_db().cursor().execute(f'SELECT * FROM users WHERE username="{user_name}"')
         row = result.fetchone()
         return dict(zip([c[0] for c in result.description], row))
+
     def post(self):
+
         parser.add_argument('username')
         parser.add_argument('password')
         data = parser.parse_args()
@@ -26,8 +33,11 @@ class User(Resource):
         get_db().commit()
         get_db().close()
         return jsonify({'message': 'successfully signed up'})
+
 class Users(Resource):
+
     def get(self):
+        
         result = get_db().cursor().execute('SELECT * FROM users')
         rows = result.fetchall()
         get_db().close()

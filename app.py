@@ -1,11 +1,13 @@
-
 # Natalman Nahm
-#Arica Conrad
-#mackenzie fear
+# Arica Conrad
+# Mackenzie Fear
+
+# Arica: I followed this tutorial for comments and error trapping:
+# https://dev.to/imdhruv99/flask-user-authentication-with-jwt-2788
 
 from flask import Flask, jsonify, make_response, request
 from flask_jwt_extended import JWTManager
-from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 import uuid
@@ -20,10 +22,18 @@ import src.const
 from flask import g
 from src.db import get_db
 from resources.auth import Login, Logout, Token
+
+# Arica: Making the Flask application.
 app = Flask(__name__)
+
+# Arica: An object of the Api class.
 api = Api(app)
+
+# Arica: Configuring the application.
 app.config['SECRET_KEY'] = 'somesecretkeything'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///example.db'
+
+# Arica: The JWTManager object.
 jwt = JWTManager(app)
 
 if not exists(src.const.DB_NAME):
