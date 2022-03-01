@@ -106,7 +106,7 @@ class Logout(Resource):
             message = jsonify(error = 'Username is a required field.')
             return make_response(message, 400) 
         
-        # Arica: Checks to see if the username and/or password are typed incorrectly.
+        # Arica: Checks to see if the username is typed incorrectly.
         if not get_db().cursor().execute(f'SELECT id FROM users WHERE username = "{un}"').fetchone():
             message = jsonify(error = 'Incorrect username submitted. Please check if the username is typed correctly.')
             return make_response(message, 400) 
