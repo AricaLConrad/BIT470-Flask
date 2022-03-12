@@ -9,5 +9,6 @@ def init_db():
     cur.execute('CREATE TABLE IF NOT EXISTS rooms(id INTEGER NOT NULL, roomnumber text PRIMARY KEY)')
     cur.execute('CREATE TABLE IF NOT EXISTS token(id INTEGER NOT NULL, tokenid text PRIMARY KEY)')
     cur.execute('CREATE TABLE IF NOT EXISTS staff(staffid INTEGER NOT NULL PRIMARY KEY, id INTERGER NOT NULL, staffname text, phonenumber text, email text, address text)')
+    cur.execute('CREATE TABLE IF NOT EXISTS tasks(id INTEGER NOT NULL AUTOINCREMENT PRIMARY KEY, roomnumber text, staffname text, taskname text, taskdesc text, date_joined Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGNKEY(roomnumber) REFERENCES rooms(roomnumber), FOREIGN KEY(staffname) REFERENCES staff(staffname))')
     con.commit()
     con.close()

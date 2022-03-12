@@ -23,6 +23,7 @@ from flask import g
 from src.db import get_db
 from resources.auth import Login, Logout, Token
 from resources.rooms import Room, Rooms
+from resources.rooms import Task, Tasks
 
 # Arica: Making the Flask application.
 app = Flask(__name__)
@@ -72,6 +73,8 @@ api.add_resource(Room, '/rooms/<string:room_no>', '/rooms/create')
 api.add_resource(Rooms, '/rooms')
 api.add_resource(AllStaff, '/staff')
 api.add_resource(Staff, '/staff/<staffid>')
+api.add_resource(Tasks, '/tasks')
+api.add_resource(Task, '/tasks/<task_id>', '/newtask')
 
 @app.teardown_appcontext
 def close_connection(exception):

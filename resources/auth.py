@@ -76,6 +76,12 @@ class Login(Resource):
 
             if check_password_hash(respw[0], pw):
                 token = jwt.encode({'id' : res[0], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, "somesecretkeything", "HS256")
+                try:
+                    res = get_db().cursor().execute(f'SELECT id FROM users WHERE username = "{un}"').fetchone()
+                    validToken = get_db().cursor().execute(f'SELECT tokenid FROM token WHERE id = {res[0]}').fetchone()
+                    if not validToken is None:
+                        message = jsonify(message = 'You have already logged in.')
+                        return make_response(message, 404)
                 get_db().cursor().execute(f'INSERT INTO token(id, tokenid) VALUES({res[0]},"{token}")')
                 get_db().commit()
                 # Arica: Returns a successful login message. I removed the token to test it out.
